@@ -25,8 +25,8 @@ class ChristmasTree
   
     def initialize(height)
       @height = height
-      @ornament = 0
-      @lights_on = false
+      @ornaments = 0
+      @lights_on = nil
     end
   
     def add_ornaments(count)
@@ -35,14 +35,18 @@ class ChristmasTree
   
     def lights_status
       if @lights_on
-        return "light is on"
+        return "light on"
       else
-        return "light is off"
+        return "light off"
       end
     end
   
     def to_string
-      "Christmas tree with #{@height} feet, #{@ornaments} ornaments, and #{lights_status}"
+      if @lights_on != nil
+        "Christmas tree with #{@height} feet, #{@ornaments} ornaments, and #{lights_status}"
+      else
+        "Christmas tree with #{@height} feet, and #{@ornaments} ornaments"
+      end
     end
   
     def turn_on_light
@@ -54,23 +58,23 @@ class ChristmasTree
     end
   
     def self.celebrate(height, gifts)
-      christmasTree = ChristmasTreee.new(height)
+      christmasTree = ChristmasTree.new(height)
       puts "Building a #{height}-foot Christmas tree"
       puts christmasTree.to_string
       puts "Adding ornaments..."
-      christmasTree.add_decoration(10)
+      christmasTree.add_ornaments(10)
       puts christmasTree.to_string
       puts "Turning on the lights..."
-      christmasTree.light_on
+      christmasTree.turn_on_light
       puts christmasTree.to_string
   
       puts "Placing #{gifts.count} gifts under the tree"
       gifts.each do |gift|
-        
+        puts gift.description
       end
   
       puts "Turning off the lights..."
-      christmasTree.light_off
+      christmasTree.turn_off_light
       puts christmasTree.to_string
   
       christmasTree
